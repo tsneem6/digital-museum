@@ -161,14 +161,4 @@ export const INITIAL_TIMELINE = [
 
 export const INITIAL_TESTIMONIALS = [];
 
-export const INITIAL_VOLUNTEERING = [
-  {
-    "id": "v1",
-    "year": "20XX",
-    "eventTitle": "STEM Day for Kids",
-    "title": "Volunteer",
-    "organization": "Organization",
-    "description": "SAMPLE — replace with your own volunteering, or delete it from the Editor.",
-    "photos": []
-  }
-];
+export const INITIAL_VOLUNTEERING = [];
