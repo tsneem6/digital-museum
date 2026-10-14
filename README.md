@@ -7,7 +7,7 @@ Kitty pops in now and then to say hi.
 
 ![Preview](public/og-image.png)
 
-> **Live at:** https://tsneem6.github.io/digital-museum-/ (once GitHub Pages is switched on)
+> **Live at:** https://tsneem6.github.io/digital-museum/ (once GitHub Pages is switched on)
 >
 > **Setting it up for the first time?** Read **[START-HERE.md](START-HERE.md)**.
 > It's a step-by-step guide that needs no coding.
@@ -58,7 +58,7 @@ then `curator_rate_limit_atomic.sql`, and deploy the function:
 
 ```bash
 npx supabase secrets set GEMINI_API_KEY=... TURNSTILE_SECRET_KEY=...
-npx supabase secrets set PROJECTS_RAW_URL=https://raw.githubusercontent.com/tsneem6/digital-museum-/main/src/data/projects.js
+npx supabase secrets set PROJECTS_RAW_URL=https://raw.githubusercontent.com/tsneem6/digital-museum/main/src/data/projects.js
 npx supabase functions deploy ask-curator --no-verify-jwt
 ```
 
@@ -68,7 +68,7 @@ Then add the Actions **variable** `VITE_CURATOR_ENABLED` = `true` and redeploy.
 
 ```bash
 npm install
-npm run dev            # live dev server at http://localhost:5173/digital-museum-/
+npm run dev            # live dev server at http://localhost:5173/digital-museum/
 npm run build          # production build in dist/
 npm run build:preview  # double-clickable test copy in preview/ (with a demo editor)
 npm run lint

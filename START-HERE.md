@@ -17,10 +17,10 @@ You don't need to write any code.
 ## Part 1: Put the site online (≈ 10 min)
 
 > **Already done for you:** your repository
-> [tsneem6/digital-museum-](https://github.com/tsneem6/digital-museum-) has
+> [tsneem6/digital-museum](https://github.com/tsneem6/digital-museum) has
 > the site in it and `site.config.js` already has your username. **Skip to
 > step 5** below. Your site will be at
-> **https://tsneem6.github.io/digital-museum-/**
+> **https://tsneem6.github.io/digital-museum/**
 >
 > Steps 1–4 are here in case you ever need to set it up again from scratch.
 

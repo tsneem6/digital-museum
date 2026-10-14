@@ -36,7 +36,7 @@ export const SITE = {
   // commits content changes straight into this repo, and GitHub Pages serves
   // the site at https://<githubOwner>.github.io/<githubRepo>/.
   githubOwner: 'tsneem6',
-  githubRepo: 'digital-museum-',
+  githubRepo: 'digital-museum',
 
   // Gallery filter tabs & the Editor's category dropdown. Rename freely —
   // only categories with at least one project show up as tabs.
