@@ -2,9 +2,9 @@
 -- Run this in the Supabase SQL editor (same flow as the other migrations in
 -- this folder — this repo doesn't use `supabase db push`).
 --
--- BEFORE RUNNING: replace every you@example.com below with the email
--- address of the Supabase Auth user you created for the Editor login
--- (the same address set as "Contact Email" in the site's settings).
+-- The email below must match the Supabase Auth user used for the Editor
+-- login (the same address as "Email" in the editor's About me page). If it
+-- ever changes, update it here and run this file again.
 --
 -- Security model: anon may INSERT a pending entry (approved forced to false
 -- by the CHECK constraint below — an insert attempting approved=true is
@@ -35,15 +35,15 @@ create policy "public read approved"
 drop policy if exists "owner reads all entries" on public.guestbook_entries;
 create policy "owner reads all entries"
   on public.guestbook_entries for select
-  using ((auth.jwt() ->> 'email') = 'you@example.com');
+  using ((auth.jwt() ->> 'email') = 'tsniiim96@gmail.com');
 
 drop policy if exists "owner moderates entries" on public.guestbook_entries;
 create policy "owner moderates entries"
   on public.guestbook_entries for update
-  using ((auth.jwt() ->> 'email') = 'you@example.com')
-  with check ((auth.jwt() ->> 'email') = 'you@example.com');
+  using ((auth.jwt() ->> 'email') = 'tsniiim96@gmail.com')
+  with check ((auth.jwt() ->> 'email') = 'tsniiim96@gmail.com');
 
 drop policy if exists "owner deletes entries" on public.guestbook_entries;
 create policy "owner deletes entries"
   on public.guestbook_entries for delete
-  using ((auth.jwt() ->> 'email') = 'you@example.com');
+  using ((auth.jwt() ->> 'email') = 'tsniiim96@gmail.com');

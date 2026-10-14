@@ -119,7 +119,7 @@ export const INITIAL_PROJECTS = [
 ];
 
 export const SITE_SETTINGS = {
-  "email": "you@example.com",
+  "email": "tsniiim96@gmail.com",
   "cvLink": "#",
   "social": {
     "instagram": "",
