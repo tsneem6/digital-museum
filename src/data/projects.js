@@ -40,7 +40,7 @@ export const SITE_SETTINGS = {
   "cvLink": "#",
   "social": {
     "instagram": "",
-    "linkedin": "",
+    "linkedin": "https://www.linkedin.com/in/tasneem-mherat",
     "behance": "",
     "github": "",
     "pinterest": "",
