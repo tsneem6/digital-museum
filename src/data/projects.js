@@ -135,29 +135,7 @@ export const SITE_SETTINGS = {
   }
 };
 
-export const INITIAL_TIMELINE = [
-  {
-    "id": "t1",
-    "year": "Currently",
-    "title": "Mechatronics Engineering Student",
-    "organization": "The Hashemite University (HU)",
-    "description": "Studying Mechatronics Engineering — robotics, control, electronics and mechanical design all in one."
-  },
-  {
-    "id": "t2",
-    "year": "20XX",
-    "title": "A Team, Club or Competition",
-    "organization": "Organization",
-    "description": "SAMPLE — replace with a club, internship, competition or award."
-  },
-  {
-    "id": "t3",
-    "year": "20XX",
-    "title": "Where It Started",
-    "organization": "School",
-    "description": "SAMPLE — the first thing that made you love engineering."
-  }
-];
+export const INITIAL_TIMELINE = [];
 
 export const INITIAL_TESTIMONIALS = [];
 
