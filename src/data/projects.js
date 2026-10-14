@@ -22,7 +22,15 @@ export const SITE_SETTINGS = {
   }
 };
 
-export const INITIAL_TIMELINE = [];
+export const INITIAL_TIMELINE = [
+  {
+    "id": "t1791999747117",
+    "year": "2025",
+    "title": "IEEE IES HU Social media manger",
+    "organization": "",
+    "description": "building my way to top, baby steps"
+  }
+];
 
 export const INITIAL_TESTIMONIALS = [];
 
