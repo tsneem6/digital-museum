@@ -58,18 +58,18 @@ export const SITE_SETTINGS = {
 
 export const INITIAL_TIMELINE = [
   {
-    "id": "t1792003541627",
-    "year": "2025-NOW",
-    "title": "OREX GRAPHIC DESIGNER",
-    "organization": "",
-    "description": "DESIGNING COOL STUFF WITH OREX"
-  },
-  {
     "id": "t1791999747117",
     "year": "2025-NOW",
     "title": "IEEE IES HU Social media manger",
     "organization": "",
     "description": "building my way to top, baby steps"
+  },
+  {
+    "id": "t1792003541627",
+    "year": "2025-NOW",
+    "title": "OREX GRAPHIC DESIGNER",
+    "organization": "",
+    "description": "DESIGNING COOL STUFF WITH OREX"
   }
 ];
 
