@@ -1,0 +1,28 @@
+.image-zoom {
+  display: block;
+  overflow: hidden;
+  cursor: zoom-in;
+  line-height: 0;
+}
+
+.image-zoom.zoomed {
+  cursor: zoom-out;
+}
+
+.image-zoom img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.45s var(--ease-smooth);
+  will-change: transform;
+}
+
+/* While panning, tracking the pointer should feel glued, not eased. */
+.image-zoom.zoomed img {
+  transition: transform 0.18s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .image-zoom img { transition: none; }
+}

@@ -1,0 +1,202 @@
+/* ── Polaroid project card ── */
+.pc {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0.8rem 0.8rem 0;
+  border-radius: 26px;
+  background: var(--pill);
+  border: 1px solid color-mix(in srgb, var(--gold) 12%, transparent);
+  box-shadow:
+    0 2px 0 color-mix(in srgb, var(--gold) 8%, transparent),
+    0 18px 40px -18px color-mix(in srgb, var(--shadow) 35%, transparent);
+  rotate: var(--tilt);
+  cursor: var(--cursor-pointer);
+  transition: rotate 0.45s var(--ease-smooth), translate 0.45s var(--ease-smooth), box-shadow 0.45s var(--ease-smooth);
+}
+.pc:hover,
+.pc:focus-within {
+  rotate: 0deg;
+  translate: 0 -6px;
+  box-shadow:
+    0 2px 0 color-mix(in srgb, var(--gold) 12%, transparent),
+    0 28px 50px -18px color-mix(in srgb, var(--shadow) 45%, transparent);
+}
+
+/* Washi tape holding the polaroid to the wall */
+.pc-tape {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  width: 92px;
+  height: 26px;
+  translate: -50% 0;
+  rotate: -4deg;
+  background: var(--tape);
+  opacity: 0.85;
+  border-radius: 3px;
+  mask: radial-gradient(circle at 0 50%, transparent 4px, #000 4.5px) left / 51% 100% no-repeat,
+        radial-gradient(circle at 100% 50%, transparent 4px, #000 4.5px) right / 51% 100% no-repeat;
+  z-index: 3;
+}
+
+/* Photo */
+.pc-photo {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 18px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+}
+.pc-photo.is-plain {
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--proj) calc(100% - var(--card-tint)), var(--ink-light)),
+    color-mix(in srgb, var(--proj-accent) 35%, var(--ink-light)));
+}
+.pc-photo-emoji { font-size: 3.4rem; filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.15)); }
+
+/* Dark mode: dim bright photos a touch so they sit in the night page */
+:root[data-theme='dark'] .pc-photo.has-cover { filter: brightness(0.88) saturate(0.95); }
+
+.pc-photo-chips {
+  position: absolute;
+  inset: 0.7rem 0.7rem auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.pc-chip {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.7rem;
+  line-height: 1;
+  padding: 0.38rem 0.7rem;
+  border-radius: 999px;
+  color: var(--linen);
+  background: color-mix(in srgb, var(--pill) 90%, transparent);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 12px -4px color-mix(in srgb, var(--shadow) 30%, transparent);
+}
+.pc-chip--status { color: var(--gold); }
+.pc-chip--photos { position: absolute; right: 0.7rem; bottom: 0.7rem; }
+
+/* Body */
+.pc-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  flex: 1;
+  padding: 1rem 0.6rem 0;
+}
+
+.pc-sticker {
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.72rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  color: var(--gold);
+  background: color-mix(in srgb, var(--gold) 12%, transparent);
+}
+
+.pc-title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.4rem;
+  line-height: 1.2;
+  color: var(--linen);
+}
+.pc-title-btn {
+  all: unset;
+  cursor: var(--cursor-pointer);
+}
+.pc-title-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; border-radius: 6px; }
+
+.pc-desc {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--silver);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.pc-tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.pc-tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  color: var(--mist);
+  background: var(--ink-light);
+  border: 1px solid color-mix(in srgb, var(--gold) 14%, transparent);
+}
+.pc-tag--more { color: var(--gold); }
+
+/* Footer */
+.pc-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding: 0.9rem 0 1rem;
+  border-top: 1.5px dashed color-mix(in srgb, var(--gold) 22%, transparent);
+}
+
+.pc-heart,
+.pc-icon,
+.pc-admin-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  min-width: 40px;
+  height: 40px;
+  padding: 0 0.75rem;
+  border-radius: 999px;
+  border: 1.5px solid color-mix(in srgb, var(--gold) 25%, transparent);
+  background: transparent;
+  color: var(--gold);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.8rem;
+  transition: background 0.25s, color 0.25s, transform 0.25s;
+}
+.pc-heart:hover,
+.pc-icon:hover { background: color-mix(in srgb, var(--gold) 12%, transparent); }
+.pc-heart.is-liked { background: var(--gold); color: var(--on-accent); border-color: var(--gold); }
+.pc-heart:active { transform: scale(0.92); }
+
+.pc-open {
+  margin-inline-start: auto;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--gold);
+  transition: translate 0.3s var(--ease-smooth);
+}
+.pc:hover .pc-open { translate: 4px 0; }
+
+.pc-admin { display: inline-flex; gap: 0.35rem; }
+.pc-admin-btn { min-width: 36px; height: 36px; padding: 0; }
+.pc-admin-btn--delete:hover { background: #ef4444; border-color: #ef4444; color: #fff; }
+
+@media (max-width: 768px) {
+  .pc { rotate: 0deg; }
+  .pc-title { font-size: 1.25rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pc, .pc:hover { rotate: 0deg; translate: none; }
+}

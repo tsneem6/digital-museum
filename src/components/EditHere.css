@@ -1,0 +1,17 @@
+.edit-here {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  height: 34px;
+  padding: 0 0.95rem;
+  border-radius: 999px;
+  border: 1.5px dashed var(--gold);
+  background: color-mix(in srgb, var(--pill) 85%, transparent);
+  color: var(--gold);
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: 0.85rem;
+  vertical-align: middle;
+  transition: background 0.2s, color 0.2s;
+}
+.edit-here:hover { background: var(--gold); color: var(--on-accent); border-style: solid; }

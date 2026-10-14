@@ -1,0 +1,96 @@
+/* Currently working on — a pinned sticky note */
+.now { padding: 0.5rem 0 3.5rem; }
+.now-inner { display: flex; justify-content: center; }
+
+.now-note {
+  position: relative;
+  width: min(100%, 560px);
+  padding: 1.6rem 1.6rem 1.4rem;
+  border-radius: 6px 6px 22px 6px;
+  background: linear-gradient(180deg, var(--butter), color-mix(in srgb, var(--butter) 85%, var(--blush)));
+  color: var(--linen);
+  rotate: -1.5deg;
+  box-shadow:
+    0 1px 0 color-mix(in srgb, var(--shadow) 10%, transparent),
+    0 22px 40px -24px color-mix(in srgb, var(--shadow) 55%, transparent);
+  transition: rotate 0.4s var(--ease-smooth);
+}
+.now-note:hover { rotate: 0deg; }
+
+.now-pin {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 22px;
+  height: 22px;
+  translate: -50% 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, var(--gold-light), var(--gold) 60%, var(--gold-dark));
+  box-shadow: 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+}
+
+.now-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.6rem;
+}
+.now-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: var(--gold-dark);
+}
+:root[data-theme='dark'] .now-eyebrow { color: var(--gold); }
+.now-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--gold) 60%, transparent);
+  animation: now-ping 2s ease-out infinite;
+}
+@keyframes now-ping {
+  0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--gold) 55%, transparent); }
+  80%, 100% { box-shadow: 0 0 0 9px transparent; }
+}
+.now-updated { font-size: 0.8rem; font-weight: 700; color: var(--silver); }
+
+.now-title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(1.35rem, 3vw, 1.7rem);
+  line-height: 1.25;
+}
+.now-desc { margin-top: 0.35rem; color: var(--mist); line-height: 1.6; }
+
+.now-progress {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+.now-bar {
+  flex: 1;
+  height: 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--pill) 75%, transparent);
+  overflow: hidden;
+}
+.now-bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: repeating-linear-gradient(-45deg, var(--gold) 0 8px, var(--gold-light) 8px 16px);
+}
+.now-percent { font-weight: 800; font-size: 0.85rem; color: var(--gold-dark); white-space: nowrap; }
+:root[data-theme='dark'] .now-percent { color: var(--gold); }
+
+.now-edit { margin-top: 1rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .now-dot { animation: none; }
+}

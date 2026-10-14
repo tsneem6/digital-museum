@@ -1,0 +1,291 @@
+/* ============================================
+   Tasneem's Museum — Global Design System
+   Light & playful: blush background, plum text,
+   raspberry-pink accents, rounded type.
+   Extra softening lives in theme.css.
+   ============================================ */
+
+:root {
+  /* Names are historical (they come from the original dark museum) but the
+     roles are what matter: --ink is the page background, --linen the main
+     text colour, --gold the accent. Change the hex values to re-theme. */
+  --ink:        #fff4f8; /* page background — blush */
+  --ink-light:  #ffe9f1; /* cards & panels */
+  --ink-mid:    #fbd3e3; /* borders, hover fills */
+  --silver:     #8d5f77; /* muted text (AA on --ink) */
+  --dust:       #8a6378;
+  --mist:       #6d4659;
+  --linen:      #4a2338; /* main text — plum */
+  --paper:      #3d1c2e;
+  --white:      #2f1424;
+
+  --gold:       #c7356f; /* accent — raspberry pink */
+  --gold-light: #e9679d;
+  --gold-dark:  #a3245a;
+
+  /* Pastel decoration */
+  --blush:      #ffc8dd;
+  --lilac:      #d9c8ff;
+  --mint:       #c6f0e0;
+  --butter:     #ffeaa7;
+
+  --pill:       #ffffff; /* little white badges & chips */
+  --shadow:     #c7356f; /* tint of soft shadows */
+  --on-accent:  #ffffff; /* text on a solid pink button */
+  --on-image:   #ffffff;
+  --card-tint:  0%;      /* how much a project's own colour fades toward the page (dark mode) */
+  color-scheme: light;
+
+  --font-serif:  'Fredoka', 'Nunito', system-ui, sans-serif;
+  --font-sans:   'Nunito', system-ui, sans-serif;
+  --font-mono:   'Nunito', system-ui, sans-serif;
+  --font-script: 'Dancing Script', cursive;
+  --font-serif-ar: 'Baloo Bhaijaan 2', 'Fredoka', sans-serif;
+  --font-sans-ar:  'Tajawal', 'Nunito', system-ui, sans-serif;
+
+  --ease-smooth:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-precise: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Stacking order, lowest to highest */
+  --z-nav:            10;
+  --z-admin-backdrop: 20;
+  --z-admin:          21;
+  --z-modal:          30;
+  --z-lightbox:       40;
+  --z-curator-fab:    42;
+  --z-curator-panel:  43;
+  --z-grain:          50;
+  --z-preloader:      60;
+  --z-cursor:         70;
+}
+
+/* ── Dark mode: "midnight pink" ──
+   Same roles, night values. Applied by data-theme="dark" on <html>, which
+   index.html sets from the visitor's saved choice or their system setting. */
+:root[data-theme='dark'] {
+  --ink:        #1c0f18;
+  --ink-light:  #29162a;
+  --ink-mid:    #42253c;
+  --silver:     #d4b2c5;
+  --dust:       #cba6ba;
+  --mist:       #ecd3e0;
+  --linen:      #ffeaf3;
+  --paper:      #fff3f8;
+  --white:      #ffffff;
+
+  --gold:       #ff8cbd;
+  --gold-light: #ffb4d6;
+  --gold-dark:  #e4609a;
+
+  --blush:      #6b2c52;
+  --lilac:      #4b3a7a;
+  --mint:       #24564a;
+  --butter:     #6b5420;
+
+  --pill:       #331a2e;
+  --shadow:     #000000;
+  --on-accent:  #2a0d1f;
+  --card-tint:  72%;
+  color-scheme: dark;
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body { -webkit-tap-highlight-color: transparent; }
+
+/* Touch feedback: taps get an immediate pressed state instead of the
+   (nonexistent) hover state — hover styles only apply where hover exists. */
+@media (pointer: coarse) {
+  a:active, button:active { opacity: 0.7; }
+}
+/* Native smooth scrolling — sections land just below the floating navbar. */
+html { scroll-behavior: smooth; }
+section[id], footer[id] { scroll-margin-top: 84px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* Keyboard-focus ring, tuned for the dark theme — the browser default is a
+   thin, low-contrast outline that's easy to lose against --ink. Only shows
+   for keyboard focus (:focus-visible), never on a mouse click. */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+body {
+  transition: background-color 0.4s ease, color 0.4s ease;
+  font-family: var(--font-sans);
+  background: var(--ink);
+  color: var(--linen);
+  line-height: 1.6;
+  font-weight: 400;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; font-family: inherit; }
+input, textarea, select { font-family: inherit; }
+
+/* ── Cursor ──
+   Real CSS cursors (drawn by the browser, so they never lag): a pink arrow
+   with a tiny heart, turning into a heart over anything clickable. Touch
+   screens never see them. */
+:root {
+  --cursor-default: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2228%22%20height%3D%2228%22%20viewBox%3D%220%200%2028%2028%22%3E%3Cpath%20d%3D%22M4%202.5%20L4%2021%20L9%2016.6%20L12.6%2024.6%20L16.4%2022.9%20L12.9%2015%20L19.6%2015%20Z%22%20fill%3D%22%23e0558e%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.8%22%20stroke-linejoin%3D%22round%22/%3E%3Cpath%20d%3D%22M20.5%2020.6c-.9-1.6-3.3-.9-2.6.8l2.6%202.4%202.6-2.4c.7-1.7-1.7-2.4-2.6-.8z%22%20fill%3D%22%23ff8cbd%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221%22/%3E%3C/svg%3E") 4 2, auto;
+  --cursor-pointer: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2230%22%20height%3D%2230%22%20viewBox%3D%220%200%2030%2030%22%3E%3Cpath%20d%3D%22M15%2026%20C6%2019.5%202.5%2015%202.5%2010%20C2.5%206%205.5%203%209.3%203%20C11.8%203%2014%204.4%2015%206.6%20C16%204.4%2018.2%203%2020.7%203%20C24.5%203%2027.5%206%2027.5%2010%20C27.5%2015%2024%2019.5%2015%2026%20Z%22%20fill%3D%22%23e0558e%22%20stroke%3D%22%23fff%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22round%22/%3E%3Cellipse%20cx%3D%229.5%22%20cy%3D%229%22%20rx%3D%222.4%22%20ry%3D%221.6%22%20fill%3D%22%23fff%22%20opacity%3D%22.55%22%20transform%3D%22rotate%28-30%209.5%209%29%22/%3E%3C/svg%3E") 15 14, pointer;
+}
+@media (pointer: fine) {
+  html { cursor: var(--cursor-default); }
+  a, button, summary, label[for], select, [role='button'], [data-cursor],
+  input[type='checkbox'], input[type='color'], input[type='file'] { cursor: var(--cursor-pointer); }
+  input:not([type='checkbox']):not([type='color']):not([type='file']), textarea { cursor: text; }
+  button:disabled { cursor: not-allowed; }
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--ink); }
+::-webkit-scrollbar-thumb { background: #f3a9c8; border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold-dark); }
+
+/* ── Utilities ── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 5vw, 5rem);
+}
+@media (max-width: 768px) {
+  .container { padding: 0 1.2rem; }
+}
+
+.serif { font-family: var(--font-serif); }
+.mono  { font-family: var(--font-mono); }
+
+/* ── Arabic ──
+   Arabic script doesn't have a monospace tradition — Noto Sans Arabic
+   stands in for `.mono` labels too, at the same size/tracking, rather
+   than rendering Arabic in a Latin monospace font (which breaks shaping)
+   or forcing Latin-only mono tokens through Arabic text (which is empty
+   for RTL runs anyway, since numerals/labels are what .mono marks here). */
+:lang(ar) { font-family: var(--font-sans-ar); }
+:lang(ar) .serif { font-family: var(--font-serif-ar); font-style: normal; }
+:lang(ar) .mono { font-family: var(--font-sans-ar); letter-spacing: 0; text-transform: none; }
+
+/* RTL: logical flow first. Flexbox/grid direction already mirrors under
+   dir="rtl" natively; these are the few spots that hardcode a physical
+   side and need an explicit flip. */
+[dir='rtl'] .hero-headline--italic { font-style: normal; } /* Arabic has no italic tradition */
+
+/* ── Grain overlay (unused on this light theme; kept for re-theming) ── */
+.grain-overlay::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: var(--z-grain);
+}
+
+@media (max-width: 768px) {
+  .grain-overlay::before { display: none; }
+}
+
+/* ── Section Labels ── */
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.section-label::before {
+  content: '';
+  display: inline-block;
+  width: 2rem;
+  height: 1px;
+  background: var(--gold);
+}
+
+/* ── Hover underline ── */
+.hover-underline { position: relative; }
+.hover-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 100%; height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s var(--ease-smooth);
+}
+.hover-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ── Animated divider ── */
+.animated-rule {
+  width: 100%; height: 1px;
+  background: rgba(199, 53, 111, 0.066);
+  position: relative; overflow: hidden;
+}
+.animated-rule::after {
+  content: '';
+  position: absolute; top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, var(--gold-dark), transparent);
+  animation: rule-sweep 4.5s ease-in-out infinite;
+}
+@keyframes rule-sweep {
+  0%   { left: -100%; opacity: 0; }
+  20%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+
+/* ── Reveal animation ── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+  animation: fade-up 0.9s var(--ease-smooth) forwards;
+}
+
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+
+/* ── Balanced headings ── */
+h1, h2, h3 { text-wrap: balance; }
+
+/* ── Reduced motion: everything settles instantly ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,142 @@
+/* Giving back — card grid */
+.give { padding: 4.5rem 0; }
+
+.give-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  margin-bottom: 2.25rem;
+}
+.give-title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  line-height: 1.05;
+  color: var(--linen);
+}
+.give-subtitle { margin-top: 0.4rem; font-weight: 700; color: var(--gold); }
+.give-head-side { display: flex; align-items: center; gap: 0.75rem; }
+.give-count {
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--gold) 12%, transparent);
+  color: var(--gold);
+  font-weight: 800;
+  font-size: 0.85rem;
+}
+
+.give-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.give-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--pill);
+  border: 1px solid color-mix(in srgb, var(--gold) 12%, transparent);
+  box-shadow: 0 16px 34px -24px color-mix(in srgb, var(--shadow) 55%, transparent);
+  transition: transform 0.3s var(--ease-smooth);
+}
+.give-card:hover { transform: translateY(-4px); }
+
+/* Photo strip: 1 = full, 2 = halves, 3 = one tall + two stacked */
+.give-photos {
+  display: grid;
+  gap: 4px;
+  height: 180px;
+}
+.give-photos--2 { grid-template-columns: 1fr 1fr; }
+.give-photos--3 { grid-template-columns: 2fr 1fr; grid-template-rows: 1fr 1fr; }
+.give-photos--3 .give-photo:first-child { grid-row: 1 / 3; }
+.give-photo {
+  position: relative;
+  border: 0;
+  padding: 0;
+  overflow: hidden;
+  background: var(--ink-light);
+}
+.give-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s var(--ease-smooth);
+}
+.give-photo:hover img { transform: scale(1.06); }
+.give-more-photos {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(46, 18, 34, 0.55);
+  color: #fff;
+  font-weight: 800;
+  font-size: 1.2rem;
+}
+
+.give-banner {
+  height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  font-size: 1.7rem;
+  background: linear-gradient(135deg, var(--banner), color-mix(in srgb, var(--banner) 55%, var(--pill)));
+}
+
+.give-body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 1.6rem 1.3rem 1.4rem;
+}
+.give-year {
+  position: absolute;
+  top: -16px;
+  inset-inline-start: 1.1rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  background: var(--gold);
+  color: var(--on-accent);
+  font-weight: 800;
+  font-size: 0.8rem;
+  box-shadow: 0 6px 14px -6px color-mix(in srgb, var(--gold) 70%, transparent);
+}
+.give-name {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.25;
+  color: var(--linen);
+}
+.give-meta { display: flex; flex-wrap: wrap; gap: 0.35rem 0.6rem; align-items: center; }
+.give-role {
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--gold) 12%, transparent);
+  color: var(--gold);
+  font-weight: 800;
+  font-size: 0.78rem;
+}
+.give-org { font-weight: 700; font-size: 0.85rem; color: var(--silver); }
+.give-desc { color: var(--mist); line-height: 1.6; font-size: 0.95rem; }
+
+.give-more-wrap { display: flex; justify-content: center; margin-top: 2rem; }
+.give-more {
+  height: 46px;
+  padding: 0 1.4rem;
+  border-radius: 999px;
+  border: 1.5px solid color-mix(in srgb, var(--gold) 35%, transparent);
+  background: var(--pill);
+  color: var(--gold);
+  font-weight: 800;
+}
+.give-more:hover { background: var(--gold); color: var(--on-accent); }

@@ -1,0 +1,227 @@
+.reel-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-lightbox);
+  background: #000;
+  overflow: hidden;
+  outline: none;
+}
+
+/* ── Segmented progress ── */
+.reel-progress {
+  position: absolute;
+  top: max(0.9rem, env(safe-area-inset-top, 0px));
+  left: 1rem; right: 1rem;
+  z-index: 4;
+  display: flex;
+  gap: 0.35rem;
+}
+
+.reel-seg {
+  flex: 1;
+  height: 2px;
+  background: color-mix(in srgb, var(--gold) 19.8%, transparent);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.reel-seg-fill {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+.reel-seg-fill.done { transform: scaleX(1); }
+.reel-seg-fill.active { animation-name: reel-fill; animation-timing-function: linear; animation-fill-mode: forwards; }
+
+@keyframes reel-fill {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* ── Top chrome ── */
+.reel-chrome {
+  position: absolute;
+  top: calc(max(0.9rem, env(safe-area-inset-top, 0px)) + 0.8rem);
+  left: 1rem; right: 1rem;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.reel-kicker {
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.reel-chrome-btns { display: flex; gap: 0.5rem; flex-shrink: 0; }
+
+.reel-icon-btn {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: rgba(74, 35, 56, 0.248);
+  border: 1px solid color-mix(in srgb, var(--gold) 22%, transparent);
+  color: rgba(255,255,255,0.85);
+  font-size: 0.8rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+.reel-icon-btn:hover { border-color: var(--gold); color: var(--gold); }
+.reel-icon-btn:last-child { font-size: 1.4rem; }
+
+/* ── Stage & slides ── */
+.reel-stage { position: absolute; inset: 0; }
+
+.reel-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+}
+
+/* Natural-size image, centered on the black stage — never cropped,
+   never upscaled past its own resolution. */
+.reel-img {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: auto;
+  height: auto;
+  max-width: min(100%, 92vw);
+  max-height: 78vh;
+  max-height: 78dvh;
+  object-fit: contain;
+  user-select: none;
+  box-shadow: 0 30px 80px color-mix(in srgb, var(--shadow) 18%, transparent);
+}
+
+.reel-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.45) 0%, transparent 30%, transparent 55%, rgba(0,0,0,0.75) 100%);
+}
+
+/* ── Captions ── */
+.reel-caption {
+  position: relative;
+  z-index: 2;
+  padding: 0 clamp(1.5rem, 6vw, 5rem) clamp(3rem, 8vh, 5.5rem);
+  max-width: 900px;
+}
+
+.reel-caption--corner { padding-bottom: max(2.5rem, env(safe-area-inset-bottom, 0px)); }
+
+.reel-caption-kicker {
+  display: block;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+
+.reel-title {
+  font-size: clamp(2.2rem, 6vw, 4.5rem);
+  font-weight: 300;
+  font-style: italic;
+  color: #fff;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.reel-caption-meta {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.8);
+}
+
+/* ── End card ── */
+.reel-end {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+.reel-end-glow {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 420px; height: 420px;
+  border-radius: 50%;
+  filter: blur(110px);
+  opacity: 0.3;
+}
+
+.reel-end > * { position: relative; }
+
+.reel-end-sub {
+  margin-top: 0.9rem;
+  max-width: 46ch;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.75);
+}
+
+.reel-end-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 2.25rem;
+}
+
+.reel-btn {
+  background: rgba(74, 35, 56, 0.138);
+  border: 1px solid color-mix(in srgb, var(--gold) 27.5%, transparent);
+  color: rgba(255,255,255,0.9);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.85rem 1.6rem;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+.reel-btn:hover { border-color: #fff; color: #fff; }
+
+.reel-btn--gold {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: color-mix(in srgb, var(--gold) 8%, transparent);
+}
+.reel-btn--gold:hover { background: var(--gold); color: var(--ink); }
+
+/* ── Tap zones ── */
+.reel-zone {
+  position: absolute;
+  top: 15%;
+  bottom: 15%;
+  z-index: 3;
+  background: none;
+  border: none;
+}
+.reel-zone--prev { left: 0; width: 33%; }
+.reel-zone--next { right: 0; width: 67%; }

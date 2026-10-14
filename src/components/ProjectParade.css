@@ -1,0 +1,92 @@
+/* Project parade — an auto-gliding row of mini polaroids */
+.parade { padding: 3.5rem 0 1rem; overflow: hidden; }
+
+.parade-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.parade-heading {
+  font-family: var(--font-script);
+  font-weight: 700;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  color: var(--gold);
+}
+.parade-hint { color: var(--silver); font-weight: 700; font-size: 0.9rem; }
+
+.parade-viewport {
+  /* fade the edges so cards drift in and out */
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.parade-belt {
+  list-style: none;
+  display: flex;
+  width: max-content;
+  padding: 1.25rem 0 2rem;
+  animation: parade-slide var(--duration, 40s) linear infinite;
+}
+.parade-viewport:hover .parade-belt,
+.parade-belt:focus-within { animation-play-state: paused; }
+@keyframes parade-slide {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+/* The belt always runs left-to-right so the loop maths holds; card text
+   still follows the page direction. */
+.parade-belt { direction: ltr; }
+[dir='rtl'] .parade-card { direction: rtl; }
+
+.parade-item { padding: 0 0.75rem; }
+
+.parade-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  width: 210px;
+  padding: 0.6rem 0.6rem 0.8rem;
+  border: 0;
+  border-radius: 18px;
+  background: var(--pill);
+  text-align: start;
+  rotate: var(--tilt);
+  box-shadow: 0 16px 30px -20px color-mix(in srgb, var(--shadow) 60%, transparent);
+  transition: rotate 0.3s var(--ease-smooth), transform 0.3s var(--ease-smooth);
+}
+.parade-card:hover,
+.parade-card:focus-visible { rotate: 0deg; transform: translateY(-6px) scale(1.04); }
+
+.parade-photo {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  border-radius: 12px;
+  background-color: var(--ink-light);
+  background-size: cover;
+  background-position: center;
+  font-size: 2.6rem;
+}
+.parade-photo.is-plain { background: linear-gradient(135deg, var(--blush), var(--lilac)); }
+.parade-title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.25;
+  color: var(--linen);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.parade-cat { font-size: 0.78rem; font-weight: 700; color: var(--gold); }
+
+/* Reduced motion: a still row you can scroll sideways */
+@media (prefers-reduced-motion: reduce) {
+  .parade-viewport { overflow-x: auto; mask-image: none; -webkit-mask-image: none; }
+  .parade-belt { animation: none; }
+  .parade-item[aria-hidden='true'] { display: none; }
+}

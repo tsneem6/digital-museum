@@ -1,0 +1,184 @@
+{
+  "nav": {
+    "gallery": "My Work",
+    "featured": "Favourite",
+    "about": "About",
+    "editorAccess": "Editor Access",
+    "arrow": "→",
+    "lightMode": "Switch to light mode",
+    "darkMode": "Switch to dark mode",
+    "story": "My story",
+    "contact": "Say hi",
+    "label": "Main",
+    "edit": "Edit",
+    "menu": "Menu"
+  },
+  "hero": {
+    "desc": "I love building robots, tinkering with circuits and designing things that move. This is my little museum of everything I've made so far. Have a look around!",
+    "enter": "See my projects",
+    "tour": "Take a quick tour",
+    "hello": "Hello there!",
+    "im": "I'm",
+    "sayHi": "Say hi ♡",
+    "interests": "Things I love",
+    "pass": "MUSEUM PASS",
+    "editPhoto": "Change photo",
+    "statProjects": "Projects",
+    "statCategories": "Categories",
+    "statSince": "Since"
+  },
+  "featured": {
+    "eyebrow": "My favourite project",
+    "explore": "Open the project",
+    "badge": "Fave",
+    "why": "Why I love it",
+    "openLabel": "Open {{title}}"
+  },
+  "now": {
+    "eyebrow": "Currently working on",
+    "today": "updated today",
+    "yesterday": "updated yesterday",
+    "daysAgo_one": "updated {{count}} day ago",
+    "daysAgo_other": "updated {{count}} days ago",
+    "progress": "Progress",
+    "done": "{{percent}}% done",
+    "emptyOwner": "Nothing here yet — click Edit to tell visitors what you're working on."
+  },
+  "gallery": {
+    "title1": "Things I've",
+    "title2": "made",
+    "desc": "Robots, circuits, CAD models, code and everything in between — tap any card to see how it came together.",
+    "all": "Everything",
+    "add": "Add a project",
+    "searchLabel": "Search projects",
+    "searchPlaceholder": "Search projects, tools…",
+    "filterLabel": "Filter by category",
+    "showing": "Showing {{shown}} of {{total}} ✿",
+    "clear": "Clear",
+    "empty": "Nothing matches that yet — try another word or category!",
+    "showAll": "Show everything"
+  },
+  "timeline": {
+    "title": "My story so far",
+    "subtitle": "Swipe along the road — oldest to newest",
+    "prev": "Earlier",
+    "next": "Later",
+    "here": "📍 I'm here now"
+  },
+  "vol": {
+    "title": "Giving back",
+    "subtitle": "Volunteering & community stuff I love",
+    "showFewer": "Show fewer ↑",
+    "showMore": "Show {{count}} more ↓",
+    "count_one": "{{count}} adventure",
+    "count_other": "{{count}} adventures",
+    "photoLabel": "{{name}} — photo {{n}} of {{total}}"
+  },
+  "testimonials": {
+    "eyebrow": "Kind words",
+    "title": "What people say about me"
+  },
+  "contact": {
+    "title": "Let's make something cool together ♡",
+    "desc": "Internships, team projects, competitions, or just a friendly hello — my inbox is always open!",
+    "getInTouch": "Say hi!",
+    "downloadCv": "My CV"
+  },
+  "gb": {
+    "eyebrow": "Guestbook",
+    "title": "Sign my guestbook ✍︎",
+    "subtitle": "Leave a little note — it makes my day!",
+    "nameLabel": "Your name",
+    "namePlaceholder": "Your name",
+    "noteLabel": "Your note",
+    "notePlaceholder": "Write something sweet…",
+    "posting": "Posting…",
+    "sign": "Leave my note ♡",
+    "hint": "New entries are reviewed before they appear publicly.",
+    "verify": "Please complete the verification check.",
+    "received": "Note received",
+    "thanks": "Yay, thank you! Your note will show up here once I've read it.",
+    "another": "Leave another note",
+    "empty": "No notes yet — be the very first! ♡"
+  },
+  "modal": {
+    "screenshots": "Photos",
+    "stack": "Tools & parts",
+    "instructor": "Supervisor",
+    "collaborators": "Built with",
+    "repository": "Code & files",
+    "visitLive": "See it live",
+    "playReel": "Play reel",
+    "readMore": "Continue reading ↓",
+    "showLess": "Show less ↑"
+  },
+  "tour": {
+    "progress": "Guided tour — {{current}} of {{total}}",
+    "end": "End",
+    "back": "Back",
+    "next": "Next",
+    "finish": "Finish tour",
+    "featured": {
+      "title": "My favourite",
+      "caption": "The project I'm proudest of right now — tap it for the full story!"
+    },
+    "gallery": {
+      "title": "Things I've made",
+      "caption": "All my projects in one place. Filter by category or open any card."
+    },
+    "career": {
+      "title": "My story so far",
+      "caption": "University, teams, roles and milestones — step by step."
+    },
+    "volunteering": {
+      "title": "Giving back",
+      "caption": "Volunteering and community things I've been part of."
+    },
+    "testimonials": {
+      "title": "Kind words",
+      "caption": "Nice things people I've worked with have said."
+    },
+    "guestbook": {
+      "title": "Guestbook",
+      "caption": "Leave me a note before you go — I read every single one!"
+    },
+    "contact": {
+      "title": "Say hi!",
+      "caption": "Want to work together or just chat? This is the place."
+    }
+  },
+  "footer": {
+    "tagline": "Mechatronics engineering student at Hashemite University. Robots, circuits & cute things.",
+    "navigate": "Navigate",
+    "home": "Home",
+    "connect": "Connect",
+    "email": "Email",
+    "share": "Share this page",
+    "shareLinkedin": "Share on LinkedIn",
+    "copyLink": "Copy Link",
+    "copied": "Copied!",
+    "museumName": "{{name}}",
+    "crafted": "Made with ♡ and a lot of coffee"
+  },
+  "time": {
+    "justNow": "just now",
+    "minsAgo": "{{count}}m ago",
+    "hoursAgo": "{{count}}h ago",
+    "daysAgo": "{{count}}d ago"
+  },
+  "kitty": {
+    "hi": "hi! ♡",
+    "label": "Hello Kitty says hi"
+  },
+  "card": {
+    "open": "Open",
+    "like": "Send a little love",
+    "photos_one": "{{count}} photo",
+    "photos_other": "{{count}} photos"
+  },
+  "parade": {
+    "label": "All my projects, gliding by",
+    "title": "A little parade of my projects",
+    "hint": "Hover to pause · tap one to open it"
+  }
+}

@@ -1,0 +1,41 @@
+.motion-carousel {
+  position: relative;
+}
+
+.motion-carousel-stage {
+  overflow: hidden;
+}
+
+.motion-carousel-slide {
+  cursor: grab;
+}
+.motion-carousel-slide:active {
+  cursor: grabbing;
+}
+
+.motion-carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 1.75rem;
+}
+
+.motion-carousel-dot {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--ink-mid);
+  cursor: var(--cursor-pointer);
+  transition: background 0.3s var(--ease-smooth), transform 0.3s var(--ease-smooth);
+}
+
+.motion-carousel-dot:hover {
+  background: var(--dust);
+}
+
+.motion-carousel-dot.active {
+  background: var(--gold);
+  transform: scale(1.35);
+}

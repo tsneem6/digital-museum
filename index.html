@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="__FAVICON__" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#fff4f8" />
+    <script>
+      // Pick light/dark before the first paint so there is no flash: the
+      // visitor's saved choice wins, otherwise follow their system setting.
+      (function () {
+        var t;
+        try { t = localStorage.getItem('museum_theme'); } catch (e) {}
+        if (t !== 'light' && t !== 'dark') {
+          t = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.setAttribute('data-theme', t);
+      })();
+    </script>
+    <meta name="description" content="The digital museum of __SITE_NAME__ — __SITE_TAGLINE__" />
+    <title>__SITE_NAME__ — Digital Museum</title>
+
+    <!-- Open Graph / Link Preview -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="__SITE_URL__" />
+    <meta property="og:title" content="__SITE_NAME__ — Digital Museum" />
+    <meta property="og:description" content="The digital museum of __SITE_NAME__ — __SITE_TAGLINE__" />
+    <meta property="og:image" content="__SITE_URL__og-image.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="__SITE_URL__" />
+    <meta property="twitter:title" content="__SITE_NAME__ — Digital Museum" />
+    <meta property="twitter:description" content="The digital museum of __SITE_NAME__ — __SITE_TAGLINE__" />
+    <meta property="twitter:image" content="__SITE_URL__og-image.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Nunito:wght@400;600;700;800&family=Dancing+Script:wght@700&family=Baloo+Bhaijaan+2:wght@500;700&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+  </head>
+  <body style="margin: 0;">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

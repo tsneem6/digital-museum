@@ -1,0 +1,67 @@
+/* ============================================
+   Playful layer — loaded after every component
+   stylesheet. Softens the shared bits (labels,
+   buttons, cards) that several sections use.
+   ============================================ */
+
+/* A project's own colour as a background: full pastel in light mode,
+   blended toward the night page in dark mode so text stays readable. */
+.proj-bg {
+  background: color-mix(in srgb, var(--proj) calc(100% - var(--card-tint)), var(--ink-light)) !important;
+}
+
+/* ── Friendly labels: no shouting capitals ── */
+.mono,
+.section-label {
+  text-transform: none !important;
+  letter-spacing: 0.02em !important;
+  font-weight: 700;
+}
+.section-label { font-size: 0.95rem; }
+.section-label::before {
+  content: '♡' !important;
+  width: auto !important;
+  height: auto !important;
+  background: none !important;
+  color: var(--gold);
+  font-size: 1rem;
+}
+
+/* ── Pills & rounded corners for the remaining shared pieces ── */
+.contact-btn,
+.modal-btn,
+.tour-btn,
+.footer-share-btn,
+:root .guestbook-submit {
+  border-radius: 999px !important;
+  text-transform: none !important;
+  letter-spacing: 0.02em !important;
+  font-weight: 800;
+}
+.contact-btn { font-size: 0.95rem !important; }
+.contact-btn.primary {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--on-accent);
+  box-shadow: 0 10px 24px -10px color-mix(in srgb, var(--gold) 70%, transparent);
+}
+.contact-btn.primary:hover { background: var(--gold-dark); border-color: var(--gold-dark); color: var(--on-accent); }
+
+.testimonial-card,
+.tour-card { border-radius: 24px !important; }
+.testimonial-card {
+  background: var(--pill) !important;
+  box-shadow: 0 16px 36px -22px color-mix(in srgb, var(--shadow) 45%, transparent);
+}
+.modal-panel { border-radius: 28px !important; }
+.modal-swatch { border-radius: 28px 28px 0 0; }
+.modal-thumb,
+.modal-thumb img { border-radius: 16px; }
+.modal-tech-tag { border-radius: 999px !important; }
+:root .guestbook-widget,
+:root .guestbook-placeholder { border-radius: 28px; }
+:root .guestbook-input,
+:root .guestbook-name-input { border-radius: 16px; }
+
+/* ── Dark mode touch-ups ── */
+:root[data-theme='dark'] img { filter: brightness(0.94); }

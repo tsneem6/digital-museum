@@ -1,0 +1,138 @@
+/* My story so far — horizontal road */
+.road-section { padding: 5rem 0 4rem; }
+
+.road-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  margin-bottom: 1.5rem;
+}
+.road-title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  line-height: 1.05;
+  color: var(--linen);
+}
+.road-subtitle { margin-top: 0.4rem; font-weight: 700; color: var(--gold); }
+
+.road-controls { display: flex; align-items: center; gap: 0.5rem; }
+.road-arrow {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1.5px solid color-mix(in srgb, var(--gold) 30%, transparent);
+  background: var(--pill);
+  color: var(--gold);
+  font-size: 1.15rem;
+  font-weight: 800;
+  transition: background 0.2s, color 0.2s, opacity 0.2s;
+}
+.road-arrow:hover:not(:disabled) { background: var(--gold); color: var(--on-accent); }
+.road-arrow:disabled { opacity: 0.35; }
+
+.road-track {
+  --gutter: max(1.2rem, calc((100vw - 1440px) / 2 + clamp(1.5rem, 5vw, 5rem)));
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--gutter);
+  padding: 1rem var(--gutter) 2rem;
+  scrollbar-width: none;
+  outline-offset: -4px;
+}
+.road-track::-webkit-scrollbar { display: none; }
+.road-track.is-dragging { scroll-snap-type: none; cursor: grabbing; user-select: none; }
+
+.road-stop {
+  position: relative;
+  flex: 0 0 clamp(260px, 30vw, 340px);
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+/* dashed road segment joining this stop to the next */
+.road-stop::before {
+  content: '';
+  position: absolute;
+  top: 52px;
+  inset-inline-start: 22px;
+  width: calc(100% + 1.5rem);
+  border-top: 3px dashed color-mix(in srgb, var(--gold) 40%, transparent);
+}
+.road-stop:last-child::before { width: 40%; border-top-style: dotted; }
+
+.road-marker {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+.road-year {
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--gold) 12%, transparent);
+  color: var(--gold);
+  font-weight: 800;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+.road-dot {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--pill);
+  border: 3px solid var(--gold);
+  font-size: 1.2rem;
+}
+.road-stop:not(.is-latest) .road-dot::after {
+  content: '';
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+.is-latest .road-dot { background: var(--gold); box-shadow: 0 0 0 6px color-mix(in srgb, var(--gold) 20%, transparent); }
+
+.road-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.3rem 1.3rem 1.4rem;
+  border-radius: 22px;
+  background: var(--pill);
+  border: 1px solid color-mix(in srgb, var(--gold) 12%, transparent);
+  box-shadow: 0 16px 34px -24px color-mix(in srgb, var(--shadow) 55%, transparent);
+}
+.is-latest .road-card { border: 2px solid var(--gold); }
+.road-here {
+  align-self: flex-start;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  background: var(--gold);
+  color: var(--on-accent);
+  font-weight: 800;
+  font-size: 0.75rem;
+}
+.road-role {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.25;
+  color: var(--linen);
+}
+.road-org { font-weight: 800; font-size: 0.9rem; color: var(--gold); }
+.road-desc { color: var(--silver); line-height: 1.6; font-size: 0.95rem; }

@@ -1,0 +1,103 @@
+/* The anchor sits exactly on the screen edge; the kitty stands on that point
+   and is rotated so her paws face the edge she is peeking over. */
+.kitty {
+  position: fixed;
+  width: 112px;
+  height: 106px;
+  transform: translate(-50%, -100%) rotate(var(--kitty-rot));
+  transform-origin: 50% 100%;
+  z-index: 15; /* above the page, below the editor and project modals */
+  pointer-events: none;
+}
+.kitty--bottom { top: 100% !important; bottom: auto !important; }
+.kitty--top    { top: 0 !important; }
+.kitty--left   { left: 0 !important; }
+.kitty--right  { left: 100% !important; right: auto !important; }
+
+.kitty-body {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  pointer-events: auto;
+  cursor: var(--cursor-pointer);
+  filter: drop-shadow(0 6px 10px color-mix(in srgb, var(--shadow) 25%, transparent));
+  animation: kitty-peek var(--kitty-peek-ms, 7000ms) cubic-bezier(0.34, 1.4, 0.64, 1) both;
+}
+.kitty-body:hover,
+.kitty-body:focus-visible { animation-play-state: paused; }
+
+@keyframes kitty-peek {
+  0%   { transform: translateY(105%) rotate(0deg); }
+  12%  { transform: translateY(12%) rotate(-6deg); }
+  20%  { transform: translateY(16%) rotate(5deg); }
+  28%  { transform: translateY(14%) rotate(-3deg); }
+  36%  { transform: translateY(15%) rotate(0deg); }
+  80%  { transform: translateY(15%) rotate(0deg); }
+  88%  { transform: translateY(8%) rotate(4deg); }
+  100% { transform: translateY(105%) rotate(0deg); }
+}
+
+/* Blink */
+.kitty-eye {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: kitty-blink 3.2s 1.2s infinite;
+}
+@keyframes kitty-blink {
+  0%, 92%, 100% { transform: scaleY(1); }
+  95%           { transform: scaleY(0.1); }
+}
+
+/* "hi!" bubble — counter-rotated so it always reads upright */
+.kitty-bubble {
+  position: absolute;
+  left: 50%;
+  top: -34px;
+  transform: translateX(-50%) rotate(calc(-1 * var(--kitty-rot)));
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--gold);
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  box-shadow: 0 6px 16px color-mix(in srgb, var(--shadow) 20%, transparent);
+  animation: kitty-pop 0.35s cubic-bezier(0.34, 1.6, 0.64, 1);
+}
+@keyframes kitty-pop {
+  from { opacity: 0; scale: 0.4; }
+  to   { opacity: 1; scale: 1; }
+}
+
+.kitty-heart {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  color: #ff3f7f;
+  font-size: 0.9rem;
+  pointer-events: none;
+  animation: kitty-heart 0.9s ease-out forwards;
+}
+@keyframes kitty-heart {
+  from { opacity: 1; transform: translate(-50%, -50%) scale(0.6); }
+  to {
+    opacity: 0;
+    transform:
+      translate(calc(-50% + (var(--i) - 2) * 22px), calc(-50% - 46px - var(--i) * 4px))
+      scale(1.2);
+  }
+}
+
+@media (max-width: 768px) {
+  .kitty { width: 80px; height: 76px; }
+  .kitty-bubble { font-size: 0.8rem; top: -28px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kitty { display: none; }
+}

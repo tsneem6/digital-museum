@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wing Under Renovation — __SITE_NAME__</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300;1,400&family=DM+Sans:wght@400,500&family=DM+Mono&display=swap" rel="stylesheet" />
+  <style>
+    /* Standalone page — GitHub Pages serves it for any unknown URL, so it
+       carries its own copy of the museum's tokens (no build, no JS). */
+    :root {
+      --ink: #160e14;
+      --ink-light: #21151d;
+      --silver: #ab95a1;
+      --dust: #b9a5b0;
+      --linen: #f8ece9;
+      --gold: #e9a8b4;
+      --gold-dark: #c27d8a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(1200px 700px at 50% 35%, var(--ink-light), var(--ink));
+      color: var(--linen);
+      font-family: 'DM Sans', system-ui, sans-serif;
+      text-align: center;
+      padding: 24px;
+    }
+    .wing { max-width: 560px; }
+    .rope {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      justify-content: center;
+      margin-bottom: 44px;
+    }
+    .rope-line {
+      flex: 1;
+      max-width: 130px;
+      height: 3px;
+      border-radius: 2px;
+      background: repeating-linear-gradient(90deg, var(--gold-dark) 0 10px, #7a4a55 10px 20px);
+      opacity: 0.75;
+    }
+    .rope-post {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 12px rgba(233, 168, 180, 0.5);
+    }
+    .frames {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-bottom: 44px;
+    }
+    .frame {
+      width: 90px;
+      height: 110px;
+      border: 1px solid rgba(233, 168, 180, 0.35);
+      border-radius: 2px;
+      position: relative;
+      overflow: hidden;
+      transform: rotate(var(--tilt, 0deg));
+    }
+    .frame::after {
+      /* dust sheet */
+      content: '';
+      position: absolute;
+      inset: -12% -18%;
+      background: linear-gradient(160deg, rgba(240, 237, 232, 0.13), rgba(240, 237, 232, 0.05) 55%, transparent);
+      border-radius: 45% 55% 40% 60% / 60% 40% 55% 45%;
+    }
+    .kicker {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.66rem;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+    h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(2rem, 6vw, 3rem);
+      line-height: 1.15;
+    }
+    .note {
+      margin-top: 20px;
+      color: var(--dust);
+      font-size: 0.95rem;
+      line-height: 1.65;
+    }
+    .back {
+      display: inline-block;
+      margin-top: 38px;
+      padding: 12px 28px;
+      border: 1px solid rgba(233, 168, 180, 0.45);
+      border-radius: 999px;
+      color: var(--gold);
+      text-decoration: none;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.74rem;
+      letter-spacing: 0.1em;
+      transition: border-color 0.3s, color 0.3s;
+    }
+    .back:hover { border-color: var(--gold); color: #f6cdd3; }
+  </style>
+</head>
+<body>
+  <main class="wing">
+    <div class="frames" aria-hidden="true">
+      <div class="frame" style="--tilt: -3deg"></div>
+      <div class="frame" style="--tilt: 1.5deg"></div>
+      <div class="frame" style="--tilt: -1deg"></div>
+    </div>
+    <div class="rope" aria-hidden="true">
+      <span class="rope-post"></span>
+      <span class="rope-line"></span>
+      <span class="rope-post"></span>
+      <span class="rope-line"></span>
+      <span class="rope-post"></span>
+    </div>
+    <p class="kicker">Gallery 404</p>
+    <h1>This wing is being redecorated</h1>
+    <p class="note">
+      The page you were looking for isn't on display — perhaps it was moved to
+      storage, perhaps it never existed. Come back to the main hall?
+    </p>
+    <a class="back" href="__BASE_PATH__">← Return to the main hall</a>
+  </main>
+</body>
+</html>

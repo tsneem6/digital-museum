@@ -1,0 +1,63 @@
+/* Splash: a heart draws itself, fills with pink, her name appears, then the
+   page is revealed through a circle opening from the heart. Transform,
+   opacity and clip-path only — nothing that forces layout. */
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-preloader);
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 50% 42%, color-mix(in srgb, var(--blush) 70%, transparent), transparent 55%),
+    var(--ink);
+  clip-path: circle(150% at 50% 44%);
+  transition: clip-path 0.55s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.splash.is-leaving { clip-path: circle(0% at 50% 44%); }
+
+.splash-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.splash-heart {
+  overflow: visible;
+  transform-origin: 50% 55%;
+  animation: splash-beat 0.5s 0.75s ease-in-out;
+}
+.splash-outline {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 4;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: splash-draw 0.55s 0.05s ease-out forwards;
+}
+.splash-fill {
+  fill: var(--gold-light);
+  transform-box: fill-box;
+  transform: translateY(100%);
+  animation: splash-fill 0.55s 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.splash-name {
+  font-family: var(--font-script);
+  font-weight: 700;
+  font-size: 2.6rem;
+  line-height: 1;
+  color: var(--gold);
+  opacity: 0;
+  transform: translateY(8px);
+  animation: splash-name 0.45s 0.45s ease-out forwards;
+}
+
+@keyframes splash-draw { to { stroke-dashoffset: 0; } }
+@keyframes splash-fill { to { transform: translateY(0); } }
+@keyframes splash-name { to { opacity: 1; transform: none; } }
+@keyframes splash-beat {
+  0%, 100% { transform: scale(1); }
+  45%      { transform: scale(1.12); }
+}

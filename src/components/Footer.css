@@ -1,0 +1,135 @@
+.footer {
+  border-top: 1px solid color-mix(in srgb, var(--gold) 5.5%, transparent);
+  padding: 5rem 0 calc(3rem + env(safe-area-inset-bottom, 0px));
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 5rem;
+  align-items: start;
+}
+
+.footer-logo {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  color: var(--linen);
+  margin-bottom: 1rem;
+  line-height: 1.1;
+}
+
+.footer-tagline {
+  color: var(--silver);
+  font-size: 0.9rem;
+  line-height: 1.75;
+  font-weight: 300;
+}
+
+.footer-links-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer-col-title {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+
+.footer-links-col a {
+  font-size: 0.9rem;
+  color: var(--silver);
+  transition: color 0.3s;
+}
+.footer-links-col a:hover { color: var(--linen); }
+
+/* "Your ticket" — a button that dresses like the surrounding links. */
+.footer-ticket-link {
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+  font-family: inherit;
+  font-size: 0.9rem;
+  color: var(--silver);
+  cursor: var(--cursor-pointer);
+  transition: color 0.3s;
+}
+.footer-ticket-link:hover { color: var(--gold); }
+
+.footer-share {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer-share-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.footer-share-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: none;
+  border: 1px solid color-mix(in srgb, var(--gold) 11%, transparent);
+  color: var(--silver);
+  padding: 0.5rem 0.85rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.footer-share-btn span {
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.footer-share-btn:hover {
+  background: color-mix(in srgb, var(--gold) 5.5%, transparent);
+  color: var(--linen);
+  border-color: color-mix(in srgb, var(--gold) 33%, transparent);
+}
+
+.footer-divider {
+  width: 100%;
+  height: 1px;
+  background: color-mix(in srgb, var(--gold) 5.5%, transparent);
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-copy {
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--dust);
+}
+
+@media (max-width: 768px) {
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+}

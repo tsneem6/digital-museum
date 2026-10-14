@@ -1,0 +1,33 @@
+/* Gold shimmer: base gold with a brighter band drifting through. Inherits
+   font/size/spacing from the element it's applied to. */
+.shimmering-text {
+  display: inline-block;
+  background: linear-gradient(
+    100deg,
+    var(--gold) 40%,
+    var(--gold-light) 50%,
+    var(--paper) 52%,
+    var(--gold-light) 54%,
+    var(--gold) 64%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--gold); /* fallback if background-clip:text unsupported */
+  animation: shimmer-drift var(--shimmer-duration, 7s) linear infinite;
+}
+
+@keyframes shimmer-drift {
+  from { background-position: 125% 0; }
+  to   { background-position: -125% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shimmering-text {
+    animation: none;
+    background: none;
+    -webkit-text-fill-color: currentColor;
+    color: var(--gold);
+  }
+}

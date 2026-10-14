@@ -1,0 +1,93 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:   # allow manual trigger from GitHub UI
+    inputs:
+      sha:
+        description: 'Commit SHA to deploy (rollback) — empty deploys latest main'
+        required: false
+        type: string
+
+permissions:
+  contents: write   # the extract-images step commits extracted files back
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # Rollback support: dispatch with a pinned sha to redeploy a
+          # previous good build. Empty = normal deploy of main.
+          ref: ${{ inputs.sha || github.sha }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Live-editor saves embed images as base64 inside projects.js. Extract
+      # them to real files before building so the JS bundle stays small, and
+      # commit the result back ([skip ci]: this run already deploys the
+      # extracted state, no second run needed). Idempotent — a clean tree
+      # commits nothing.
+      - name: Extract embedded images
+        run: |
+          node scripts/extract-images.mjs
+          # On a rollback (pinned sha) HEAD is detached — build the extracted
+          # state but don't try to push history from the past.
+          if [ -n "${{ inputs.sha }}" ]; then
+            echo "Rollback deploy of ${{ inputs.sha }} — skipping commit-back."
+            exit 0
+          fi
+          if ! git diff --quiet || [ -n "$(git status --porcelain public/images)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add src/data/projects.js public/images
+            git commit -m "chore: extract embedded images to public/images [skip ci]"
+            # actions/checkout@v4 checks out github.sha (a raw commit), which
+            # always leaves HEAD detached — a bare `git push` has no upstream
+            # to infer and fails with "You are not currently on a branch".
+            # Push explicitly to main; if that races with another push and
+            # gets rejected, don't fail the whole deploy over a best-effort
+            # persistence step — the build below already uses this run's
+            # locally-extracted files regardless of whether the commit lands.
+            git push origin HEAD:main || echo "::warning::Could not push extracted images back to main (will retry on the next deploy) — continuing with this build."
+          fi
+
+      - name: Build
+        run: npm run build
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+          VITE_TURNSTILE_SITE_KEY: ${{ secrets.VITE_TURNSTILE_SITE_KEY }}
+          VITE_CURATOR_ENABLED: ${{ vars.VITE_CURATOR_ENABLED }}
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

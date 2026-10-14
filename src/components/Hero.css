@@ -1,0 +1,288 @@
+/* ── Hero: greeting + museum pass ── */
+.hero {
+  position: relative;
+  padding: calc(env(safe-area-inset-top, 0px) + 130px) 0 4.5rem;
+  overflow: hidden;
+}
+
+/* Soft colour wash: plain gradients, no blur filters (cheap to paint) */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  mask-image: linear-gradient(180deg, #000 70%, transparent);
+  -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent);
+  background:
+    radial-gradient(38rem 26rem at 85% 20%, color-mix(in srgb, var(--blush) 75%, transparent), transparent 70%),
+    radial-gradient(30rem 22rem at 10% 90%, color-mix(in srgb, var(--lilac) 55%, transparent), transparent 70%),
+    radial-gradient(22rem 18rem at 55% 105%, color-mix(in srgb, var(--mint) 50%, transparent), transparent 70%);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.9fr);
+  align-items: center;
+  gap: 3rem;
+}
+
+.hero-text { display: flex; flex-direction: column; gap: 1.1rem; min-width: 0; }
+
+.hero-hello {
+  align-self: flex-start;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  background: var(--pill);
+  border: 1px solid color-mix(in srgb, var(--gold) 16%, transparent);
+  color: var(--gold);
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+.hero-wave { display: inline-block; transform-origin: 70% 70%; animation: hero-wave 2.4s 1s ease-in-out infinite; }
+@keyframes hero-wave {
+  0%, 60%, 100% { transform: rotate(0); }
+  10%, 30% { transform: rotate(16deg); }
+  20%, 40% { transform: rotate(-8deg); }
+}
+
+.hero-title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(2.8rem, 7vw, 5.6rem);
+  line-height: 1.02;
+  color: var(--linen);
+  text-wrap: balance;
+}
+.hero-name {
+  display: inline-block;
+  font-family: var(--font-script);
+  font-weight: 700;
+  font-size: 1.15em;
+  color: var(--gold);
+  padding-inline-end: 0.1em;
+}
+[dir='rtl'] .hero-name { font-family: var(--font-serif-ar); font-size: 1em; }
+
+.hero-role {
+  font-weight: 800;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--mist);
+}
+.hero-role span { color: var(--gold); }
+
+.hero-desc {
+  max-width: 34rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--silver);
+}
+
+.hero-chips { list-style: none; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.hero-chip {
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--gold) 10%, transparent);
+  color: var(--linen);
+  font-weight: 700;
+  font-size: 0.88rem;
+}
+
+.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; margin-top: 0.4rem; }
+.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  height: 50px;
+  padding: 0 1.5rem;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 0.98rem;
+  transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+}
+.hero-btn:hover { transform: translateY(-2px); }
+.hero-btn--main {
+  background: var(--gold);
+  color: var(--on-accent);
+  box-shadow: 0 12px 26px -12px color-mix(in srgb, var(--gold) 80%, transparent);
+}
+.hero-btn--main:hover { background: var(--gold-dark); }
+.hero-btn--soft {
+  background: var(--pill);
+  color: var(--gold);
+  border: 1.5px solid color-mix(in srgb, var(--gold) 30%, transparent);
+}
+.hero-tour {
+  border: 0;
+  background: none;
+  color: var(--silver);
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--gold) 50%, transparent);
+  text-underline-offset: 4px;
+  padding: 0.5rem;
+}
+.hero-tour:hover { color: var(--gold); }
+
+/* Museum pass */
+.hero-pass-wrap {
+  position: relative;
+  justify-self: center;
+  width: min(100%, 340px);
+  padding-top: 64px;
+}
+.hero-lanyard {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  width: 26px;
+  height: 120px;
+  translate: -50% 0;
+  border-radius: 6px;
+  background: repeating-linear-gradient(180deg, var(--gold) 0 14px, var(--gold-light) 14px 28px);
+  z-index: 0;
+}
+.hero-pass {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 1.4rem 1.4rem;
+  border-radius: 28px;
+  background: var(--pill);
+  border: 1px solid color-mix(in srgb, var(--gold) 16%, transparent);
+  box-shadow: 0 30px 60px -30px color-mix(in srgb, var(--shadow) 55%, transparent);
+  animation: hero-float 6s ease-in-out infinite;
+  overflow: hidden;
+}
+.hero-pass::before {
+  /* clip slot the lanyard threads through */
+  content: '';
+  position: absolute;
+  top: 12px;
+  width: 54px;
+  height: 10px;
+  border-radius: 6px;
+  background: var(--ink);
+  border: 1px solid color-mix(in srgb, var(--gold) 20%, transparent);
+}
+@keyframes hero-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+
+.hero-pass-top {
+  align-self: stretch;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 -1.4rem 1.25rem;
+  padding: 2.2rem 1.4rem 0.8rem;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  color: var(--on-accent);
+  font-weight: 800;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+}
+
+.hero-photo {
+  width: 132px;
+  height: 132px;
+  margin-top: -3.6rem;
+  border-radius: 50%;
+  padding: 5px;
+  background: var(--pill);
+  box-shadow: 0 10px 24px -12px color-mix(in srgb, var(--shadow) 60%, transparent);
+}
+.hero-photo img,
+.hero-initials {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.hero-initials {
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, var(--blush), var(--lilac));
+  color: var(--gold);
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 2.8rem;
+}
+.hero-photo-edit { margin-top: 0.6rem; }
+
+.hero-pass-name {
+  margin-top: 0.9rem;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.45rem;
+  color: var(--linen);
+}
+.hero-pass-role { font-weight: 700; font-size: 0.88rem; color: var(--silver); }
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  align-self: stretch;
+  margin-top: 1.1rem;
+}
+.hero-stats div {
+  padding: 0.6rem 0.25rem;
+  border-radius: 16px;
+  background: var(--ink-light);
+}
+.hero-stats dt { font-size: 0.72rem; font-weight: 700; color: var(--silver); }
+.hero-stats dd {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+
+.hero-barcode {
+  align-self: stretch;
+  height: 26px;
+  margin-top: 1rem;
+  border-radius: 4px;
+  opacity: 0.55;
+  background: repeating-linear-gradient(90deg,
+    var(--linen) 0 2px, transparent 2px 4px, var(--linen) 4px 5px, transparent 5px 9px,
+    var(--linen) 9px 12px, transparent 12px 14px);
+}
+
+.hero-sticker {
+  position: absolute;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--pill);
+  box-shadow: 0 10px 22px -10px color-mix(in srgb, var(--shadow) 60%, transparent);
+  font-size: 1.5rem;
+  animation: hero-bob 5s ease-in-out infinite;
+}
+.hero-sticker--1 { top: 120px; left: -28px; animation-delay: -1s; }
+.hero-sticker--2 { top: 190px; right: -24px; animation-delay: -2.5s; }
+.hero-sticker--3 { bottom: 90px; right: -30px; animation-delay: -0.5s; }
+.hero-sticker--4 { bottom: 30px; left: -18px; width: 42px; height: 42px; font-size: 1.15rem; animation-delay: -3.5s; }
+@keyframes hero-bob {
+  0%, 100% { transform: translateY(0) rotate(-6deg); }
+  50%      { transform: translateY(-10px) rotate(6deg); }
+}
+
+@media (max-width: 900px) {
+  .hero { padding-top: calc(env(safe-area-inset-top, 0px) + 110px); }
+  .hero-grid { grid-template-columns: 1fr; gap: 3.5rem; }
+  .hero-pass-wrap { width: min(100%, 300px); }
+  .hero-sticker--1 { left: -8px; }
+  .hero-sticker--2, .hero-sticker--3 { right: -8px; }
+  .hero-sticker--4 { left: -4px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-pass, .hero-sticker, .hero-wave { animation: none; }
+}

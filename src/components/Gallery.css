@@ -1,0 +1,206 @@
+/* ── Things I've made ── */
+.gallery-section {
+  padding: clamp(5rem, 10vw, 8rem) 0 clamp(4rem, 8vw, 7rem);
+  position: relative;
+}
+
+.gallery-header {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 30rem);
+  align-items: end;
+  gap: 1.5rem 3rem;
+  margin-bottom: 2.25rem;
+}
+
+.gallery-title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(2.6rem, 6vw, 4.6rem);
+  line-height: 1.02;
+  color: var(--linen);
+}
+.gallery-title-script {
+  font-family: var(--font-script);
+  font-style: normal;
+  font-weight: 700;
+  color: var(--gold);
+  font-size: 1.15em;
+}
+
+.gallery-desc {
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--silver);
+}
+
+.gallery-add-btn {
+  grid-column: 1 / -1;
+  justify-self: start;
+  padding: 0.65rem 1.25rem;
+  border-radius: 999px;
+  border: 1.5px dashed var(--gold);
+  background: transparent;
+  color: var(--gold);
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+.gallery-add-btn:hover { background: color-mix(in srgb, var(--gold) 10%, transparent); }
+
+/* Filter bar */
+.gallery-toolbar {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(220px, 300px) 1fr;
+  grid-template-areas:
+    'search chips'
+    'status status';
+  gap: 1rem 1.25rem;
+  align-items: center;
+  padding: 1rem 1.1rem;
+  margin-bottom: 3.5rem;
+  border-radius: 28px;
+  background: var(--pill);
+  border: 1px solid color-mix(in srgb, var(--gold) 14%, transparent);
+  box-shadow: 0 18px 40px -26px color-mix(in srgb, var(--shadow) 40%, transparent);
+}
+
+.gallery-search {
+  grid-area: search;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 46px;
+  padding: 0 1rem;
+  border-radius: 999px;
+  background: var(--ink-light);
+  border: 1.5px solid transparent;
+  color: var(--gold);
+  transition: border-color 0.25s;
+}
+.gallery-search:focus-within { border-color: var(--gold); }
+.gallery-search-icon { display: inline-flex; }
+.gallery-search input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--linen);
+  font-size: 0.95rem;
+}
+.gallery-search input::placeholder { color: var(--silver); opacity: 1; }
+
+.gallery-chips {
+  grid-area: chips;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.gallery-chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  height: 42px;
+  padding: 0 0.6rem 0 0.9rem;
+  border-radius: 999px;
+  border: 1.5px solid color-mix(in srgb, var(--gold) 22%, transparent);
+  background: transparent;
+  color: var(--linen);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.85rem;
+  isolation: isolate;
+  transition: border-color 0.25s, color 0.25s, transform 0.2s;
+}
+.gallery-chip:hover { border-color: var(--gold); transform: translateY(-1px); }
+.gallery-chip.is-active { color: var(--on-accent); border-color: var(--gold); }
+
+.gallery-chip-bg {
+  position: absolute;
+  inset: -1.5px;
+  border-radius: inherit;
+  background: var(--gold);
+  z-index: -1;
+}
+
+.gallery-chip-count {
+  min-width: 1.6rem;
+  height: 1.6rem;
+  padding: 0 0.4rem;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  background: color-mix(in srgb, var(--gold) 14%, transparent);
+  color: var(--gold);
+}
+.gallery-chip.is-active .gallery-chip-count {
+  background: color-mix(in srgb, var(--on-accent) 25%, transparent);
+  color: var(--on-accent);
+}
+
+.gallery-status {
+  grid-area: status;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0 0.4rem;
+  font-size: 0.85rem;
+  color: var(--silver);
+}
+
+.gallery-clear {
+  border: 0;
+  background: color-mix(in srgb, var(--gold) 12%, transparent);
+  color: var(--gold);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.78rem;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+}
+.gallery-clear:hover { background: color-mix(in srgb, var(--gold) 22%, transparent); }
+
+/* Grid of polaroids */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 2.75rem 2rem;
+  align-items: stretch;
+}
+
+.gallery-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 3rem 1rem;
+  text-align: center;
+  color: var(--silver);
+}
+.gallery-empty-icon { font-size: 2.6rem; }
+
+@media (max-width: 900px) {
+  .gallery-header { grid-template-columns: 1fr; }
+  .gallery-toolbar {
+    grid-template-columns: 1fr;
+    grid-template-areas: 'search' 'chips' 'status';
+  }
+}
+
+@media (max-width: 600px) {
+  .gallery-toolbar { border-radius: 22px; padding: 0.85rem; margin-bottom: 2.5rem; }
+  /* One swipeable row of chips instead of a tall wrapped block */
+  .gallery-chips {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin: 0 -0.85rem;
+    padding: 0.15rem 0.85rem;
+    scrollbar-width: none;
+  }
+  .gallery-chips::-webkit-scrollbar { display: none; }
+  .gallery-chip { flex: none; }
+  .gallery-grid { gap: 2.25rem; }
+}

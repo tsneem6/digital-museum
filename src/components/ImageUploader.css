@@ -1,0 +1,203 @@
+.img-uploader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.img-uploader-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--silver);
+}
+
+.img-uploader-hint {
+  color: var(--dust);
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.55rem;
+}
+
+.img-drop-zone {
+  position: relative;
+  border: 1px dashed color-mix(in srgb, var(--gold) 11%, transparent);
+  border-radius: 4px;
+  min-height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: var(--cursor-pointer);
+  transition: border-color 0.3s, background 0.3s;
+  overflow: hidden;
+}
+
+.img-drop-zone:hover,
+.img-drop-zone.dragging {
+  border-color: var(--gold-dark);
+  background: color-mix(in srgb, var(--gold) 3%, transparent);
+}
+
+.img-drop-zone.has-image {
+  border-style: solid;
+  border-color: color-mix(in srgb, var(--gold) 8.8%, transparent);
+  min-height: 180px;
+}
+
+.img-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+}
+
+.img-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(74, 35, 56, 0.33);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+  backdrop-filter: blur(4px);
+}
+.img-drop-zone:hover .img-overlay { opacity: 1; }
+
+.img-overlay-text {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--linen);
+}
+
+.img-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--silver);
+  padding: 2rem;
+  text-align: center;
+}
+.img-placeholder svg { opacity: 0.4; }
+.img-placeholder p { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; }
+.img-sub { color: var(--dust) !important; }
+
+.img-error {
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  color: #ef4444;
+}
+
+.img-remove {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  color: rgba(239,68,68,0.6);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0;
+  transition: color 0.2s;
+}
+.img-remove:hover { color: #ef4444; }
+
+/* Multi uploader */
+.multi-uploader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.multi-uploader-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--silver);
+}
+
+.multi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.multi-thumb {
+  position: relative;
+  aspect-ratio: 16/9;
+  border-radius: 3px;
+  overflow: hidden;
+  cursor: grab;
+  border: 1px solid color-mix(in srgb, var(--gold) 6.6%, transparent);
+}
+
+.multi-thumb img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.multi-thumb-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(74, 35, 56, 0.358);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.multi-thumb:hover .multi-thumb-overlay { opacity: 1; }
+
+.multi-thumb-overlay .mono {
+  font-size: 0.55rem;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+}
+
+.multi-remove {
+  background: none;
+  border: none;
+  color: rgba(239,68,68,0.8);
+  font-size: 1.1rem;
+  line-height: 1;
+  padding: 0.25rem 0.5rem;
+  cursor: var(--cursor-pointer);
+}
+.multi-remove:hover { color: #ef4444; }
+
+/* Touch devices can't hover to reveal the overlays — keep the controls
+   visible so images can still be changed and removed. */
+@media (hover: none) {
+  .img-overlay {
+    opacity: 1;
+    background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.65) 100%);
+    align-items: flex-end;
+    padding-bottom: 0.6rem;
+  }
+  .multi-thumb-overlay {
+    opacity: 1;
+    background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, transparent 50%);
+    align-items: flex-start;
+  }
+  .multi-thumb-overlay .mono { display: none; } /* drag hint is desktop-only */
+}
+
+.multi-add-btn {
+  aspect-ratio: 16/9;
+  border: 1px dashed color-mix(in srgb, var(--gold) 11%, transparent);
+  border-radius: 3px;
+  background: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  color: var(--silver);
+  transition: border-color 0.3s, color 0.3s;
+}
+.multi-add-btn:hover { border-color: var(--gold-dark); color: var(--gold); }
+.multi-add-btn .mono { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; }

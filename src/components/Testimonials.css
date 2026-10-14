@@ -1,0 +1,118 @@
+.testimonials-section {
+  padding: 8rem 0;
+  position: relative;
+  background-color: var(--ink);
+  overflow: hidden;
+}
+
+.testimonials-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.testimonials-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  color: var(--linen);
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* Carousel mode (>3 voices): one centered card at a time. */
+.testimonials-carousel {
+  max-width: 720px;
+  margin: 0 auto;
+}
+.testimonials-carousel-slide {
+  padding: 0 4px; /* room for the card's border/shadow inside the clipped stage */
+}
+
+.testimonial-card {
+  position: relative;
+  padding: 2.5rem;
+  background: color-mix(in srgb, var(--gold) 2.2%, transparent);
+  border: 1px solid color-mix(in srgb, var(--gold) 5.5%, transparent);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+
+.testimonial-card:hover {
+  background: color-mix(in srgb, var(--gold) 4.4%, transparent);
+  border-color: color-mix(in srgb, var(--gold) 30%, transparent);
+  transform: translateY(-5px);
+}
+
+.testimonial-quote-mark {
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--gold);
+  opacity: 0.6;
+}
+
+.testimonial-quote {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--linen);
+  margin-top: -1rem;
+}
+
+.testimonial-attribution {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid color-mix(in srgb, var(--gold) 8.8%, transparent);
+}
+
+.testimonial-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.testimonial-avatar-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--gold) 12%, transparent);
+  color: var(--gold);
+  font-size: 1rem;
+}
+
+.testimonial-who {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.testimonial-name {
+  font-size: 0.95rem;
+  color: var(--linen);
+}
+
+.testimonial-role {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dust);
+}
+
+@media (max-width: 768px) {
+  .testimonials-section { padding: 5rem 0; }
+  .testimonials-header { margin-bottom: 2.5rem; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .testimonial-card { padding: 1.75rem; }
+}

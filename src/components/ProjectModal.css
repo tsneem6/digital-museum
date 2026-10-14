@@ -1,0 +1,257 @@
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(74, 35, 56, 0.484);
+  backdrop-filter: blur(16px);
+  z-index: var(--z-modal);
+  display: flex; align-items: center; justify-content: center;
+  padding: 2rem;
+}
+
+.modal-panel {
+  background: var(--ink-light);
+  border: 1px solid color-mix(in srgb, var(--gold) 7.7%, transparent);
+  border-radius: 6px;
+  max-width: 720px; width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* Swatch / Cover Hero */
+.modal-swatch {
+  position: relative;
+  height: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  transition: background-size 0.6s var(--ease-smooth);
+}
+.modal-swatch:hover { background-size: 104%; }
+
+.modal-swatch-glow {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 250px; height: 250px;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.35;
+}
+
+.modal-cover-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--ink) 15%, transparent) 0%, color-mix(in srgb, var(--ink) 0%, transparent) 60%, color-mix(in srgb, var(--ink) 50%, transparent) 100%);
+}
+
+.modal-swatch-info {
+  display: flex; align-items: center; gap: 1rem;
+  position: relative; z-index: 1;
+}
+
+.modal-cat {
+  font-size: 0.6rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--linen);
+  background: color-mix(in srgb, var(--pill) 85%, transparent); padding: 0.3rem 0.75rem; border-radius: 999px;
+}
+
+.modal-status {
+  font-size: 0.52rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--gold);
+  background: color-mix(in srgb, var(--pill) 85%, transparent);
+  padding: 0.3rem 0.7rem; border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--gold) 11%, transparent);
+}
+
+.modal-reel-btn {
+  margin-left: auto;
+  margin-right: 3.25rem; /* clear the absolute-positioned close button */
+  background: color-mix(in srgb, var(--pill) 85%, transparent);
+  border: 1px solid color-mix(in srgb, var(--gold) 45%, transparent);
+  color: var(--gold);
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.5rem 0.95rem;
+  border-radius: 30px;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+.modal-reel-btn:hover { background: var(--gold-dark); border-color: var(--gold-dark); color: var(--ink); }
+
+.modal-close {
+  position: absolute; top: 1.25rem; right: 1.25rem;
+  background: color-mix(in srgb, var(--pill) 85%, transparent); border: 1px solid color-mix(in srgb, var(--gold) 13.2%, transparent);
+  color: var(--silver);
+  width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.3s; z-index: 2;
+  backdrop-filter: blur(8px);
+}
+.modal-close:hover { background: var(--gold); color: #fff; }
+.modal-close::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+}
+
+/* Body */
+.modal-body {
+  padding: 2rem 2.5rem 2.5rem;
+  display: flex; flex-direction: column; gap: 1.75rem;
+}
+
+.modal-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300; color: var(--linen);
+  letter-spacing: -0.03em; line-height: 1.1;
+}
+
+.modal-subtitle { color: var(--silver); font-size: 0.9rem; margin-top: 0.25rem; }
+
+.modal-long-desc-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.modal-long-desc {
+  color: var(--dust); font-size: 0.95rem; line-height: 1.85;
+}
+
+/* Collapsed state: clamp to a few lines and fade the tail out so the
+   cut never lands mid-thought visually. */
+.modal-long-desc.clamped {
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 55%, transparent 100%);
+}
+
+.modal-readmore {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--gold);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+.modal-readmore:hover { color: var(--gold-light); }
+
+/* Expanded write-up — rendered Markdown */
+.modal-long-desc-md h1,
+.modal-long-desc-md h2,
+.modal-long-desc-md h3 {
+  font-size: 1.1rem;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--gold);
+  letter-spacing: 0.02em;
+  margin: 1.25rem 0 0.5rem;
+}
+.modal-long-desc-md h1:first-child,
+.modal-long-desc-md h2:first-child,
+.modal-long-desc-md h3:first-child { margin-top: 0; }
+.modal-long-desc-md p { margin: 0 0 1rem; }
+.modal-long-desc-md p:last-child { margin-bottom: 0; }
+.modal-long-desc-md ul,
+.modal-long-desc-md ol {
+  margin: 0 0 1rem;
+  padding-left: 1.4rem;
+}
+.modal-long-desc-md li { margin-bottom: 0.4rem; }
+.modal-long-desc-md li:last-child { margin-bottom: 0; }
+.modal-long-desc-md strong { color: var(--linen); font-weight: 600; }
+.modal-long-desc-md em { font-style: italic; }
+
+/* Plaque-style sub-headings — deliberately not the mono eyebrow */
+.modal-heading {
+  font-size: 1.1rem;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--gold);
+  letter-spacing: 0.02em;
+  margin-bottom: 0.75rem;
+}
+
+/* Screenshot Gallery */
+.modal-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.modal-thumb {
+  position: relative;
+  aspect-ratio: 16/9;
+  border-radius: 3px;
+  overflow: hidden;
+  cursor: var(--cursor-pointer);
+  border: 1px solid color-mix(in srgb, var(--gold) 5.5%, transparent);
+  background: none;
+  padding: 0;
+}
+
+.modal-thumb img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform 0.5s var(--ease-smooth);
+}
+.modal-thumb:hover img { transform: scale(1.06); }
+
+.modal-thumb-hover {
+  position: absolute; inset: 0;
+  background: rgba(74, 35, 56, 0.303);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity 0.3s;
+  font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(255,255,255,0.8);
+}
+.modal-thumb:hover .modal-thumb-hover { opacity: 1; }
+
+/* Tech */
+.modal-tech-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.modal-tech-tag {
+  font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.28rem 0.7rem;
+  border: 1px solid color-mix(in srgb, var(--gold) 8.8%, transparent); border-radius: 2px; color: var(--silver);
+}
+
+/* Collaborators */
+.modal-collab-list { display: flex; flex-direction: column; gap: 0.6rem; }
+.modal-collab-item {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid color-mix(in srgb, var(--gold) 6.6%, transparent);
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--gold) 2.2%, transparent);
+}
+.modal-collab-name { color: var(--linen); font-size: 0.88rem; text-decoration: none; }
+a.modal-collab-name:hover { color: var(--gold); }
+.modal-collab-role {
+  font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dust);
+  white-space: nowrap;
+}
+
+/* Actions */
+.modal-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.modal-btn {
+  display: inline-flex; align-items: center; gap: 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+  padding: 0.8rem 1.5rem; border-radius: 2px; border: 1px solid;
+  transition: all 0.3s ease;
+}
+.modal-btn-outline { border-color: color-mix(in srgb, var(--gold) 11%, transparent); color: var(--dust); }
+.modal-btn-outline:hover { border-color: var(--silver); color: var(--linen); }
+.modal-btn-gold { border-color: var(--gold-dark); color: var(--gold); background: color-mix(in srgb, var(--gold) 5%, transparent); }
+.modal-btn-gold:hover { background: var(--gold-dark); color: var(--ink); }
+

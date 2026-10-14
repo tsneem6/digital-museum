@@ -1,0 +1,192 @@
+.guestbook-section {
+  padding: 8rem 0;
+  position: relative;
+  background-color: var(--ink);
+  overflow: hidden;
+}
+
+.guestbook-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.guestbook-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  color: var(--linen);
+}
+
+.guestbook-subtitle {
+  color: var(--dust);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+}
+
+.guestbook-widget {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.guestbook-placeholder {
+  padding: 3rem 2rem;
+  text-align: center;
+  border: 1px dashed color-mix(in srgb, var(--gold) 16.5%, transparent);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--gold) 2.2%, transparent);
+  color: var(--dust);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+
+.guestbook-composer {
+  padding: 1.75rem;
+  border: 1px solid color-mix(in srgb, var(--gold) 11%, transparent);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--gold) 2.2%, transparent);
+  margin-bottom: 2.5rem;
+}
+
+.guestbook-signout {
+  background: none;
+  border: none;
+  color: var(--dust);
+  font-size: 0.7rem;
+  text-decoration: underline;
+  cursor: var(--cursor-pointer);
+  padding: 0;
+}
+
+.guestbook-signout:hover { color: var(--linen); }
+
+.guestbook-name-input,
+.guestbook-input {
+  width: 100%;
+  resize: vertical;
+  background: rgba(74, 35, 56, 0.11);
+  border: 1px solid color-mix(in srgb, var(--gold) 11%, transparent);
+  border-radius: 6px;
+  padding: 0.75rem;
+  color: var(--linen);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.guestbook-name-input {
+  margin-bottom: 0.75rem;
+}
+
+.guestbook-name-input:focus,
+.guestbook-input:focus {
+  outline: none;
+  border-color: var(--gold-dark);
+}
+
+.guestbook-turnstile {
+  margin-top: 0.85rem;
+}
+
+.guestbook-hint {
+  margin-top: 0.6rem;
+  color: var(--dust);
+  font-size: 0.65rem;
+  letter-spacing: 0.03em;
+  opacity: 0.75;
+}
+
+.guestbook-submitted {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: flex-start;
+  color: var(--gold);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.guestbook-submit {
+  margin-top: 0.85rem;
+  padding: 0.6rem 1.25rem;
+  border: 1px solid var(--gold-dark);
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--gold) 8%, transparent);
+  color: var(--gold);
+  font-size: 0.75rem;
+  cursor: var(--cursor-pointer);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.guestbook-submit:hover:not(:disabled) { background: var(--gold-dark); color: var(--ink); }
+.guestbook-submit:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.guestbook-error {
+  margin-top: 0.75rem;
+  color: #e08a8a;
+  font-size: 0.75rem;
+}
+
+.guestbook-empty {
+  color: var(--dust);
+  font-size: 0.8rem;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.guestbook-entries {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.guestbook-entry {
+  display: flex;
+  gap: 0.85rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--gold) 6.6%, transparent);
+}
+
+.guestbook-entry:last-child { border-bottom: none; }
+
+.guestbook-entry-body { flex: 1; }
+
+.guestbook-entry-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-bottom: 0.35rem;
+}
+
+.guestbook-entry-name {
+  color: var(--linen);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.guestbook-entry-time {
+  color: var(--dust);
+  font-size: 0.65rem;
+}
+
+.guestbook-entry-message {
+  color: var(--dust);
+  font-size: 0.85rem;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+@media (max-width: 768px) {
+  .guestbook-section { padding: 5rem 0; }
+  .guestbook-header { margin-bottom: 2.5rem; }
+}
+
+/* Touch devices — same conventions as AdminPanel.css: 16px inputs stop
+   iOS zooming the page on focus, and tap targets reach 44px. */
+@media (pointer: coarse) {
+  .guestbook-name-input,
+  .guestbook-input { font-size: 16px; }
+  .guestbook-submit { padding: 0.85rem 1.5rem; min-height: 44px; }
+  .guestbook-signout { padding: 0.6rem 0; }
+}

@@ -1,0 +1,35 @@
+/* Odometer digits — inherit the parent's font entirely so this drops into
+   the preloader's mono counter and the cards' like counts unchanged. */
+.sliding-number {
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.sliding-digit {
+  display: inline-block;
+  height: 1em;
+  overflow: hidden;
+  /* Digits are tabular so columns don't wobble as values roll */
+  font-variant-numeric: tabular-nums;
+}
+
+.sliding-digit-track {
+  display: flex;
+  flex-direction: column;
+  will-change: transform;
+}
+
+.sliding-digit-cell {
+  display: block;
+  height: 1em;
+  line-height: 1;
+}
+
+.sliding-digit-static {
+  display: inline-block;
+  line-height: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sliding-digit-track { transition: none !important; }
+}

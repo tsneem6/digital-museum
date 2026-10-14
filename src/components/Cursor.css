@@ -1,0 +1,14 @@
+.cursor-spark {
+  position: fixed;
+  z-index: var(--z-cursor);
+  pointer-events: none;
+  font-size: 12px;
+  line-height: 1;
+  color: var(--gold-light);
+  translate: -50% -50%;
+  animation: cursor-spark 0.8s ease-out forwards;
+}
+@keyframes cursor-spark {
+  from { opacity: 0.9; transform: translate(0, 0) scale(1); }
+  to   { opacity: 0; transform: translate(var(--drift), 22px) scale(0.4) rotate(40deg); }
+}
